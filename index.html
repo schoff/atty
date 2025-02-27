@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian Tariff Status</title>
+    <style>
+        body {
+            background-color: red;
+            color: white;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            font-size: 2rem;
+        }
+        
+        #statusMessage {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+        
+        a {
+            color: white;
+            text-decoration: underline;
+            font-size: 1.5rem;
+            display: block;
+            margin: 10px 0;
+        }
+        
+        a:hover {
+            text-shadow: 0 0 8px white;
+        }
+        
+        #linksContainer {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="statusMessage"></div>
+    <div id="linksContainer"></div>
+
+    <script>
+        // Change this variable to true if USA puts tariffs on Canadian goods
+        const tariffsExist = false;
+        
+        const statusMessage = document.getElementById('statusMessage');
+        const linksContainer = document.getElementById('linksContainer');
+        
+        // List of website links for buying Canadian goods
+        const canadianLinks = [
+            { name: "Buy Canadian First", url: "https://www.buycanadianfirst.ca/" },
+            { name: "Made in Canada", url: "https://madeinca.ca/" },
+            { name: "Shop Canadian", url: "https://shopcanadian.ca/" },
+            { name: "Canada's Best", url: "https://canadasbest.com/" },
+            { name: "True North Strong", url: "https://truenorthstrong.ca/" }
+        ];
+        
+        // Update the page based on tariff status
+        function updatePage() {
+            if (tariffsExist) {
+                statusMessage.textContent = "yup";
+                
+                // Create and add links
+                canadianLinks.forEach(link => {
+                    const linkElement = document.createElement('a');
+                    linkElement.href = link.url;
+                    linkElement.textContent = link.name;
+                    linkElement.target = "_blank"; // Open in new tab
+                    linksContainer.appendChild(linkElement);
+                });
+            } else {
+                statusMessage.textContent = "nope, not yet";
+            }
+        }
+        
+        // Initialize the page
+        updatePage();
+    </script>
+</body>
+</html>
